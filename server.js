@@ -8,8 +8,8 @@ app.use(morgan('combined'));
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
-
-var article ={
+var articles={
+ article :{
     title : 'Title',
     content: `<p>
                     Hello, My name is arjun and this is my first ever coding
@@ -26,7 +26,8 @@ var article ={
                     hahahaHello, My name is arjun and this is my first ever coding
                     hahahaHello, My name is arjun and this is my first ever coding
                     hahaha</p>  
-`};
+`}
+};
 function createtemplate(data){
     var title=data.title;
     var content=data.content;
@@ -58,17 +59,12 @@ var htmltemplate=`
 `;
 return htmltemplate;
 }
-app.get('/article-one', function(req,res){
-     res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
+app.get('/:articles', function(req,res){
+     res.send(createtemplate(articles[articlename]));
     
 });
 
-app.get('/article-two', function(req,res){
-    res.send(createtemplate(article));
-});
-app.get('/article-three',function(req,res){
-    res.send('Article three is displayed here');
-});
+var articlename=req.params.articlename;
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
