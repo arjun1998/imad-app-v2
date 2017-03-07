@@ -9,13 +9,62 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
+var article ={
+    title : 'Title',
+    content: `<p>
+                    Hello, My name is arjun and this is my first ever coding
+                    hahahaHello, My name is arjun and this is my first ever coding
+                    hahahaHello, My name is arjun and this is my first ever coding
+                    hahahaHello, My name is arjun and this is my first ever coding
+                    hahaha
+                </p>
+                <p>Hello, My name is arjun and this is my first ever coding
+                    hahahaHello, My name is arjun and this is my first ever coding
+                    hahahaHello, My name is arjun and this is my first ever coding
+                    hahaha</p>
+                  <p>Hello, My name is arjun and this is my first ever coding
+                    hahahaHello, My name is arjun and this is my first ever coding
+                    hahahaHello, My name is arjun and this is my first ever coding
+                    hahaha</p>  
+`};
+function createtemplate(data){
+    var title=data.title;
+    var content=data.content;
+var htmltemplate=`
+
+<html>
+    <head>
+        <title>
+            <div> ${title}</div>
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        
+              <link href="/ui/style.css" rel="stylesheet" />
+        
+        <body class="container">
+            <div>
+                <a href="/" >home</a>
+            </div>
+            <div>
+            <hr/>
+            <div>
+                ${content}  
+            </div></div>
+        </body>
+    </head>
+</html>
+
+
+`;
+return htmltemplate;
+}
 app.get('/article-one', function(req,res){
      res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
     
 });
 
 app.get('/article-two', function(req,res){
-    res.send('Article two is displayed here');
+    res.send(createtemplate(article));
 });
 app.get('/article-three',function(req,res){
     res.send('Article three is displayed here');
