@@ -8,8 +8,8 @@ app.use(morgan('combined'));
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
-var articles={
- 'article-one':{
+
+ article ={
     title : 'Title',
     content: `<p>
                     Hello, My name is arjun and this is my first ever coding
@@ -26,41 +26,7 @@ var articles={
                     hahahaHello, My name is arjun and this is my first ever coding
                     hahahaHello, My name is arjun and this is my first ever coding
                     hahaha</p>  
-`},
-'article-two':{ title : 'Title',
-    content: `<p>
-                    Hello, My name is arjun and this is my first ever coding
-                    hahahaHello, My name is arjun and this is my first ever coding
-                    hahahaHello, My name is arjun and this is my first ever coding
-                    hahahaHello, My name is arjun and this is my first ever coding
-                    hahaha
-                </p>
-                <p>Hello, My name is arjun and this is my first ever coding
-                    hahahaHello, My name is arjun and this is my first ever coding
-                    hahahaHello, My name is arjun and this is my first ever coding
-                    hahaha</p>
-                  <p>Hello, My name is arjun and this is my first ever coding
-                    hahahaHello, My name is arjun and this is my first ever coding
-                    hahahaHello, My name is arjun and this is my first ever coding
-                    hahaha</p>  
-`},
-'article-three':{  title : 'Title',
-    content: `<p>
-                    Hello, My name is arjun and this is my first ever coding
-                    hahahaHello, My name is arjun and this is my first ever coding
-                    hahahaHello, My name is arjun and this is my first ever coding
-                    hahahaHello, My name is arjun and this is my first ever coding
-                    hahaha
-                </p>
-                <p>Hello, My name is arjun and this is my first ever coding
-                    hahahaHello, My name is arjun and this is my first ever coding
-                    hahahaHello, My name is arjun and this is my first ever coding
-                    hahaha</p>
-                  <p>Hello, My name is arjun and this is my first ever coding
-                    hahahaHello, My name is arjun and this is my first ever coding
-                    hahahaHello, My name is arjun and this is my first ever coding
-                    hahaha</p> `},
-};
+`};
 function createtemplate(data){
     var title=data.title;
     var content=data.content;
@@ -92,14 +58,17 @@ var htmltemplate=`
 `;
 return htmltemplate;
 }
-var articlename=req.params.articlename;
-
-app.get('/:articlename', function(req,res){
-     res.send(createtemplate(articles[articlename]));
+app.get('/article-one', function(req,res){
+     res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
     
 });
 
-
+app.get('/article-two', function(req,res){
+    res.send(createtemplate(article));
+});
+app.get('/article-three',function(req,res){
+    res.send('Article three is displayed here');
+});
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
